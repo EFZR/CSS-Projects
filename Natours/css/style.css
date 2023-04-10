@@ -69,7 +69,7 @@ body {
 
   animation-name: moveInLeft;
   animation-duration: 1s;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-out;
 
   /* animation-iteration-count: 3; */
   /* animation-delay: 3s; */
@@ -83,7 +83,7 @@ body {
 
   animation-name: moveInRight;
   animation-duration: 1s;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-out;
 }
 
 @keyframes moveInLeft {
@@ -114,6 +114,17 @@ body {
   }
 }
 
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s). */
 .btn:link,
 .btn:visited {
@@ -123,6 +134,7 @@ body {
   display: inline-block;
   border-radius: 100px;
   transition: all 0.2s;
+  position: relative;
 }
 
 .btn:hover {
@@ -138,4 +150,38 @@ body {
 .btn-white {
   background-color: #fff;
   color: #777;
+}
+
+/* In CSS, ::after creates a pseudo-element that is the last child of the selected element.
+It is often used to add cosmetic content to an element with the content property.  */
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated{
+  animation-name: moveInBottom;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-delay: 0.7s;
+  /* animation-fill-mode: applys the animation of 0% before the animations start */
+  animation-fill-mode: backwards;
 }
